@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Análisis 360°</title>
+    <link rel="stylesheet" href="styles4.css">
+</head>
+<body>
+    <div class="container">
+        <h1>INFORME DE ANÁLISIS 360°</h1>
+        <button id="cargar-datos">Cargar Datos</button>
+        <h2>DATOS DEL CONTRIBUYENTE</h2>
+        <table>
+            <tr>
+                <th>Nombre:</th>
+                <td id="nombre-contribuyente"></td>
+            </tr>
+            <tr>
+                <th>CI:</th>
+                <td id="ci-contribuyente"></td>
+            </tr>
+            <tr>
+                <th>Tipo de contribuyente:</th>
+                <td id="tipo-contribuyente"></td>
+            </tr>
+            <tr>
+                <th>Inicio de Actividades Económicas:</th>
+                <td><input type="text" id="inicio-actividades" placeholder="e.g., 3/8/2021"></td>
+            </tr>
+            <tr>
+                <th>Tipo de Actividades Económicas:</th>
+                <td><input type="text" id="tipo-actividades" placeholder="e.g., Ventas de insumos agrícolas"></td>
+            </tr>
+        </table>
+      
+        <!-- INGRESOS -->
+        <h2>INGRESOS</h2>
+        <table>
+            <tr>
+                <th colspan="2">Ingresos por actividades Ordinarias</th>
+            </tr>
+            <tr>
+                <td>Ventas</td>
+                <td><input type="text" id="ventas" placeholder="e.g., 30000.00"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Ingresos por actividades No Ordinarias</th>
+            </tr>
+            <tr>
+                <td>Ingresos Financieros</td>
+                <td><input type="text" id="ingresos-financieros" placeholder="e.g., 0.00"></td>
+            </tr>
+            <tr>
+                <td>Ingresos por Venta de Activos</td>
+                <td><input type="text" id="venta-activos" placeholder="e.g., 5000.00"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Otros Ingresos</th>
+            </tr>
+            <tr>
+                <td>Ingresos por alquiler</td>
+                <td><input type="text" id="ingresos-alquiler" placeholder="e.g., 0.00"></td>
+            </tr>
+            <tr>
+                <th>TOTAL DE INGRESOS</th>
+                <td id="total-ingresos">$0.00</td>
+            </tr>
+        </table>
+        <!-- ACTIVOS -->
+
+        <h2>ACTIVOS</h2>
+<table>
+    <tr>
+        <th colspan="2">Corrientes</th>
+    </tr>
+    <tr>
+        <td>Efectivo y equivalente de efectivo</td>
+        <td><input type="text" id="efectivo" placeholder="e.g., 12000.00"></td>
+    </tr>
+    <tr>
+        <td>Cuentas y documentos por cobrar</td>
+        <td><input type="text" id="cuentas-cobrar" placeholder="e.g., 5600.00"></td>
+    </tr>
+    <tr>
+        <td>Inventarios</td>
+        <td><input type="text" id="inventarios" placeholder="e.g., 11000.00"></td>
+    </tr>
+    <tr>
+        <th>Total Activos Corrientes</th>
+        <td id="total-activos-corrientes">$0.00</td>
+    </tr>
+    <tr>
+        <th colspan="2">No Corrientes</th>
+    </tr>
+    <tr>
+        <td>Terrenos</td>
+        <td><input type="text" id="terrenos" placeholder="e.g., 25000.00"></td>
+    </tr>
+    <tr>
+        <td>Edificios</td>
+        <td><input type="text" id="edificios" placeholder="e.g., 45000.00"></td>
+    </tr>
+    <tr>
+        <td>Maquinarias y equipos</td>
+        <td><input type="text" id="maquinarias" placeholder="e.g., 0.00"></td>
+    </tr>
+    <tr>
+        <td>Muebles y enseres</td>
+        <td><input type="text" id="muebles" placeholder="e.g., 0.00"></td>
+    </tr>
+    <tr>
+        <td>Equipos de computación</td>
+        <td><input type="text" id="equipos" placeholder="e.g., 0.00"></td>
+    </tr>
+    <tr>
+        <td>Vehículos</td>
+        <td><input type="text" id="vehiculos" placeholder="e.g., 5000.00"></td>
+    </tr>
+    <tr>
+        <th>Total Activos No Corrientes</th>
+        <td id="total-activos-no-corrientes">$0.00</td>
+    </tr>
+    <tr>
+        <th>TOTAL DE ACTIVOS</th>
+        <td id="total-activos">$0.00</td>
+    </tr>
+</table>
+         <!--EGRESOS  -->
+
+         <h2>EGRESOS</h2>
+<table>
+    <tr>
+        <td>Costo de materia prima</td>
+        <td><input type="text" id="materia-prima" placeholder="e.g., 1100.00"></td>
+    </tr>
+    <tr>
+        <td>Costo mano obra directa</td>
+        <td><input type="text" id="mano-obra" placeholder="e.g., 3200.00"></td>
+    </tr>
+    <tr>
+        <td>Gastos administrativos</td>
+        <td><input type="text" id="gastos-administrativos" placeholder="e.g., 2000.00"></td>
+    </tr>
+    <tr>
+        <td>Gastos de venta</td>
+        <td><input type="text" id="gastos-venta" placeholder="e.g., 500.00"></td>
+    </tr>
+    <tr>
+        <td>Gastos financieros</td>
+        <td><input type="text" id="gastos-financieros" placeholder="e.g., 2087.50"></td>
+    </tr>
+    <tr>
+        <th>TOTAL DE EGRESOS</th>
+        <td id="total-egresos">$0.00</td>
+    </tr>
+</table>
+         <!-- PASIVOS -->
+       <!-- PASIVOS -->
+<h2>PASIVOS</h2>
+<table>
+    <tr>
+        <th colspan="2">Corrientes</th>
+    </tr>
+    <tr>
+        <td>Cuentas y documentos por pagar</td>
+        <td><input type="text" id="cuentas-pagar" placeholder="e.g., 0.00"></td>
+    </tr>
+    <tr>
+        <td>CACPECO</td>
+        <td><input type="text" id="cacpeco" placeholder="e.g., 39000.00"></td>
+    </tr>
+    <tr>
+        <td>PICHINCHA</td>
+        <td><input type="text" id="pichincha" placeholder="e.g., 12000.00"></td>
+    </tr>
+    <tr>
+        <td>GUAYAQUIL</td>
+        <td><input type="text" id="guayaquil" placeholder="e.g., 0.00"></td>
+    </tr>
+    <tr>
+        <td>RUMIÑAHUI</td>
+        <td><input type="text" id="ruminhaui" placeholder="e.g., 0.00"></td>
+    </tr>
+    <tr>
+        <th>Total Pasivos Corrientes</th>
+        <td id="total-pasivos-corrientes">$0.00</td>
+    </tr>
+</table>
+
+         
+          <!--  crecimiento de ventas-->
+          <h2>Crecimiento de ventas</h2>
+          <table>
+              <tr>
+                  <th>Año</th>
+                  <th>Ventas Anuales</th>
+                  <th>Crecimiento de ventas</th>
+              </tr>
+              <tr>
+                  <td>2021</td>
+                  <td><input type="text" id="ventas-2021" placeholder="e.g., 30000.00"></td>
+                  <td id="crecimiento-2021">----</td>
+              </tr>
+              <tr>
+                  <td>2022</td>
+                  <td><input type="text" id="ventas-2022" placeholder="e.g., 20000.00"></td>
+                  <td id="crecimiento-2022">----</td>
+              </tr>
+              <tr>
+                  <td>2023</td>
+                  <td><input type="text" id="ventas-2023" placeholder="e.g., 30724.32"></td>
+                  <td id="crecimiento-2023">----</td>
+              </tr>
+              <tr>
+                  <td>2024</td>
+                  <td><input type="text" id="ventas-2024" placeholder="e.g., 30000.00"></td>
+                  <td id="crecimiento-2024">----</td>
+              </tr>
+          </table>
+            <!-- crecimiento  -->
+            <h2>Crecimiento de cuentas incobrables</h2>
+            <table>
+                <tr>
+                    <th>Año</th>
+                    <th>Cuentas Incobrables</th>
+                    <th>Porcentaje Incobrables</th>
+                </tr>
+                <tr>
+                    <td>2021</td>
+                    <td><input type="text" id="incobrables-2021" placeholder="e.g., 3000.00"></td>
+                    <td id="porcentaje-incobrables-2021">----</td>
+                </tr>
+                <tr>
+                    <td>2022</td>
+                    <td><input type="text" id="incobrables-2022" placeholder="e.g., 1500.00"></td>
+                    <td id="porcentaje-incobrables-2022">----</td>
+                </tr>
+                <tr>
+                    <td>2023</td>
+                    <td><input type="text" id="incobrables-2023" placeholder="e.g., 2800.00"></td>
+                    <td id="porcentaje-incobrables-2023">----</td>
+                </tr>
+                <tr>
+                    <td>2024</td>
+                    <td><input type="text" id="incobrables-2024" placeholder="e.g., 5600.00"></td>
+                    <td id="porcentaje-incobrables-2024">----</td>
+                </tr>
+            </table>
+             <!-- indicadores -->
+             <h2>Indicadores de liquidez y solvencia</h2>
+             <table>
+                 <tr>
+                     <th>Indicador</th>
+                     <th>Fórmula</th>
+                     <th>Descripción</th>
+                     <th>Valores</th>
+                 </tr>
+                 <tr>
+                     <td>Capital de trabajo</td>
+                     <td>Activos corrientes - Pasivos Corrientes</td>
+                     <td>Evalua la liquidez operativa del negocio para cumplir con sus obligaciones de corto plazo.</td>
+                     <td>
+                         Activos Corrientes: <input type="text" id="activos-corrientes-1" placeholder="e.g., 30000.00"><br>
+                         Pasivos Corrientes: <input type="text" id="pasivos-corrientes-1" placeholder="e.g., 15590.04"><br>
+                         <span id="capital-trabajo">$0.00</span>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Liquidez Corriente</td>
+                     <td>Activos corrientes / Pasivos Corrientes</td>
+                     <td>Mide la capacidad de la empresa para cumplir con sus obligaciones de corto plazo</td>
+                     <td>
+                         Activos Corrientes: <input type="text" id="activos-corrientes-2" placeholder="e.g., 30000.00"><br>
+                         Pasivos Corrientes: <input type="text" id="pasivos-corrientes-2" placeholder="e.g., 15590.04"><br>
+                         <span id="liquidez-corriente">0.00</span>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Prueba Ácida</td>
+                     <td>(Activos corrientes - Inventario) / Pasivo Corriente</td>
+                     <td>Mide la capacidad de una empresa para pagar sus deudas a corto plazo utilizando sus activos más líquidos, excluyendo los inventarios.</td>
+                     <td>
+                         Activos Corrientes: <input type="text" id="activos-corrientes-3" placeholder="e.g., 30000.00"><br>
+                         Inventario: <input type="text" id="inventario" placeholder="e.g., 11000.00"><br>
+                         Pasivo Corriente: <input type="text" id="pasivos-corrientes-3" placeholder="e.g., 15590.04"><br>
+                         <span id="prueba-acida">0.00</span>
+                     </td>
+                 </tr>
+             </table>
+             <p id="interpretacion-indice-liquidez">El negocio de acuerdo al Capital de Trabajo, Razón Corriente y Prueba Ácida si posee la liquidez necesaria para cubrir sus obligaciones financieras, deudas o pasivos a corto plazo y desarrollar sus actividades sin ningún contratiempo.</p>
+             
+             <!--endeudamiento  -->
+             <h2>Indicadores de Endeudamiento</h2>
+    <table>
+        <tr>
+            <th>Indicador</th>
+            <th>Fórmula</th>
+            <th>Descripción</th>
+            <th>Valores</th>
+        </tr>
+        <tr>
+            <td>Endeudamiento del Activo</td>
+            <td>Pasivo Total / Activo Total</td>
+            <td>Mide la proporción de las deudas a corto plazo en relación con los activos totales de una empresa.</td>
+            <td>
+                Pasivo Total: <input type="number" id="pasivo-total-input" value="51000"><br>
+                Activo Total: <input type="number" id="activo-total-input" value="103600"><br>
+                Resultado: <span id="endeudamiento-activo-display">---</span>
+            </td>
+        </tr>
+    </table>
+    <p id="interpretacion-endeudamiento">El negocio presenta por cada dólar de Activo Total la empresa tiene $<span id="ratio-endeudamiento-display">0.49</span> en Pasivos Corrientes. Por cada dólar de Activo Total, $<span id="ratio-endeudamiento-display">0.49</span> son deudas a Corto Plazo.</p>
+
+         
+             <!-- indicadores de actividad -->
+             <h2>Indicadores de Actividad</h2>
+             <table>
+                 <tr>
+                     <th>Indicador</th>
+                     <th>Datos</th>
+                     <th>Valor</th>
+                     <th>Nominación</th>
+                     <th>Interpretación</th>
+                 </tr>
+                 <tr>
+                     <td>Rotación de Cartera</td>
+                     <td>
+                         Ventas: <input type="number" id="ventas-rotacion" value="30000"><br>
+                         Cuentas por Cobrar: <input type="number" id="cuentas-por-cobrar" value="5600">
+                     </td>
+                     <td id="rotacion-cartera-valor">5.36</td>
+                     <td>Veces</td>
+                     <td id="rotacion-cartera-interpretacion">La empresa en promedio cobra 5 veces al año.</td>
+                 </tr>
+                 <tr>
+                     <td>Período medio de cobranza</td>
+                     <td>
+                         Ventas: <input type="number" id="ventas-cobranza" value="30000"><br>
+                         Cuentas por Cobrar: <input type="number" id="cuentas-por-cobrar-cobranza" value="5600">
+                     </td>
+                     <td id="periodo-cobranza-valor">68.13</td>
+                     <td>Días</td>
+                     <td id="periodo-cobranza-interpretacion">La empresa otorga a sus clientes un período promedio de 68 días para que cancelen sus deudas a crédito.</td>
+                 </tr>
+                 <tr>
+                     <td>Rotación Cuentas por Pagar</td>
+                     <td>
+                         Compras: <input type="number" id="compras" value="22000"><br>
+                         Cuentas por Pagar: <input type="number" id="cuentas-por-pagar" value="51000">
+                     </td>
+                     <td id="rotacion-cuentas-pagar-valor">0.43</td>
+                     <td>Veces</td>
+                     <td id="rotacion-cuentas-pagar-interpretacion">La empresa paga en promedio 8 veces al año.</td>
+                 </tr>
+                 <tr>
+                     <td>Período medio de Pago</td>
+                     <td>
+                         Compras: <input type="number" id="compras-pago" value="22000"><br>
+                         Cuentas por Pagar: <input type="number" id="cuentas-por-pagar-pago" value="51000">
+                     </td>
+                     <td id="periodo-pago-valor">846.14</td>
+                     <td>Días</td>
+                     <td id="periodo-pago-interpretacion">La empresa paga a sus proveedores en un período promedio de 846 días.</td>
+                 </tr>
+                 <tr>
+                     <td>Rotación Activo Fijo</td>
+                     <td>
+                         Ventas: <input type="number" id="ventas-activo-fijo" value="30000"><br>
+                         Activo Fijo: <input type="number" id="activo-fijo" value="75000">
+                     </td>
+                     <td id="rotacion-activo-fijo-valor">0.40</td>
+                     <td>Veces</td>
+                     <td id="rotacion-activo-fijo-interpretacion">Por cada dólar invertido en Activo Fijo, La empresa vende $ 0.4.</td>
+                 </tr>
+                 <tr>
+                     <td>Rotación de Ventas</td>
+                     <td>
+                         Ventas: <input type="number" id="ventas-rotacion-ventas" value="30000"><br>
+                         Activo Total: <input type="number" id="activo-total-rotacion-ventas" value="103600">
+                     </td>
+                     <td id="rotacion-ventas-valor">0.29</td>
+                     <td>Veces</td>
+                     <td id="rotacion-ventas-interpretacion">Por cada dólar invertido en Activo Total, la empresa generó una venta de $ 0.29.</td>
+                 </tr>
+             </table>
+             <p id="conclusion-rotacion">La empresa otorga a sus clientes un plazo de cobro de 68 días y paga a sus proveedores en un período de 846 días, por lo tanto la empresa tiene una buena gestión tanto en sus cobros como en sus pagos.</p>
+             <!-- indicadores de rentabilidad -->
+             <section>
+                <h2>Indicadores de rentabilidad</h2>
+                <table>
+                    <tr>
+                        <th>Indicador</th>
+                        <th>Datos</th>
+                        <th>Fórmula</th>
+                        <th>Interpretación</th>
+                        <th>Resultado</th>
+                    </tr>
+                    <tr>
+                        <td>Margen Neto</td>
+                        <td>
+                            <label for="utilidad-margen-neto">Utilidad:</label>
+                            <input type="number" id="utilidad-margen-neto">
+                            <label for="ventas-margen-neto">Ventas:</label>
+                            <input type="number" id="ventas-margen-neto">
+                        </td>
+                        <td>Utilidad / Ventas</td>
+                        <td>Corresponde al porcentaje de las ventas que se transforma en beneficio neto para la empresa</td>
+                        <td id="resultado-margen-neto">0%</td>
+                    </tr>
+                    <tr>
+                        <td>ROA</td>
+                        <td>
+                            <label for="utilidad-roa">Utilidad Neta:</label>
+                            <input type="number" id="utilidad-roa">
+                            <label for="activo-total-roa">Activo Total:</label>
+                            <input type="number" id="activo-total-roa">
+                        </td>
+                        <td>Utilidad neta / Activos Total</td>
+                        <td>Este porcentaje indica el rendimiento de los activos de operación</td>
+                        <td id="resultado-roa">0%</td>
+                    </tr>
+                </table>
+            </section>
+            
+
+             <!-- codeudor -->
+             <section>
+                <h2>Codeudor y garantías personales de operaciones vigentes</h2>
+                <table id="codeudor-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Nombre</th>
+                            <th>Identificación</th>
+                            <th>Número Operación</th>
+                            <th>Institución</th>
+                            <th>Deuda</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" value="Codeudor"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="number"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button id="add-codeudor-row">Agregar Codeudor</button>
+            </section>
+            
+             <!--  -->
+        <button id="guardar">Guardar Datos</button>
+    </div>
+    <script src="script4a.js"></script>
+</body>
+</html>
