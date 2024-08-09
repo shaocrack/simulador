@@ -157,96 +157,108 @@
 </table>
          <!-- PASIVOS -->
        <!-- PASIVOS -->
-<h2>PASIVOS</h2>
-<table>
-    <tr>
-        <th colspan="2">Corrientes</th>
-    </tr>
-    <tr>
-        <td>Cuentas y documentos por pagar</td>
-        <td><input type="text" id="cuentas-pagar" placeholder="e.g., 0.00"></td>
-    </tr>
-    <tr>
-        <td>CACPECO</td>
-        <td><input type="text" id="cacpeco" placeholder="e.g., 39000.00"></td>
-    </tr>
-    <tr>
-        <td>PICHINCHA</td>
-        <td><input type="text" id="pichincha" placeholder="e.g., 12000.00"></td>
-    </tr>
-    <tr>
-        <td>GUAYAQUIL</td>
-        <td><input type="text" id="guayaquil" placeholder="e.g., 0.00"></td>
-    </tr>
-    <tr>
-        <td>RUMIÑAHUI</td>
-        <td><input type="text" id="ruminhaui" placeholder="e.g., 0.00"></td>
-    </tr>
-    <tr>
-        <th>Total Pasivos Corrientes</th>
-        <td id="total-pasivos-corrientes">$0.00</td>
-    </tr>
-</table>
+       <h2>PASIVOS</h2>
+       <table>
+           <tr>
+               <th colspan="2">Corrientes</th>
+           </tr>
+           <tr>
+               <td>Cuentas y documentos por pagar</td>
+               <td><input type="text" id="cuentas-pagar" placeholder="e.g., 0.00"></td>
+           </tr>
+           <tr>
+               <td>CACPECO</td>
+               <td><input type="text" id="cacpeco" placeholder="e.g., 39000.00"></td>
+           </tr>
+           <tr>
+               <td>PICHINCHA</td>
+               <td><input type="text" id="pichincha" placeholder="e.g., 12000.00"></td>
+           </tr>
+           <tr>
+               <td>GUAYAQUIL</td>
+               <td><input type="text" id="guayaquil" placeholder="e.g., 0.00"></td>
+           </tr>
+           <tr>
+               <td>RUMIÑAHUI</td>
+               <td><input type="text" id="ruminhaui" placeholder="e.g., 0.00"></td>
+           </tr>
+           <tr>
+               <td>BANECUADOR</td>
+               <td><input type="text" id="banecuador" placeholder="e.g., 0.00"></td>
+           </tr>
+           <tr>
+               <td>PACÍFICO</td>
+               <td><input type="text" id="pacifico" placeholder="e.g., 0.00"></td>
+           </tr>
+           <tr>
+               <td>AMBATO</td>
+               <td><input type="text" id="ambato" placeholder="e.g., 0.00"></td>
+           </tr>
+           <tr>
+               <th>Total Pasivos Corrientes</th>
+               <td id="total-pasivos-corrientes">$0.00</td>
+           </tr>
+       </table>
 
          
-          <!--  crecimiento de ventas-->
-          <h2>Crecimiento de ventas</h2>
-          <table>
-              <tr>
-                  <th>Año</th>
-                  <th>Ventas Anuales</th>
-                  <th>Crecimiento de ventas</th>
-              </tr>
-              <tr>
-                  <td>2021</td>
-                  <td><input type="text" id="ventas-2021" placeholder="e.g., 30000.00"></td>
-                  <td id="crecimiento-2021">----</td>
-              </tr>
-              <tr>
-                  <td>2022</td>
-                  <td><input type="text" id="ventas-2022" placeholder="e.g., 20000.00"></td>
-                  <td id="crecimiento-2022">----</td>
-              </tr>
-              <tr>
-                  <td>2023</td>
-                  <td><input type="text" id="ventas-2023" placeholder="e.g., 30724.32"></td>
-                  <td id="crecimiento-2023">----</td>
-              </tr>
-              <tr>
-                  <td>2024</td>
-                  <td><input type="text" id="ventas-2024" placeholder="e.g., 30000.00"></td>
-                  <td id="crecimiento-2024">----</td>
-              </tr>
-          </table>
+          <!--  Crecimiento de ventas-->
+<h2>Crecimiento de ventas</h2>
+<table>
+    <tr>
+        <th>Año</th>
+        <th>Ventas Anuales</th>
+        <th>Crecimiento de ventas</th>
+    </tr>
+    <tr>
+        <td id="anio-1">----</td>
+        <td><input type="text" id="ventas-1" placeholder="e.g., 30000.00"></td>
+        <td id="crecimiento-1">----</td>
+    </tr>
+    <tr>
+        <td id="anio-2">----</td>
+        <td><input type="text" id="ventas-2" placeholder="e.g., 20000.00"></td>
+        <td id="crecimiento-2">----</td>
+    </tr>
+    <tr>
+        <td id="anio-3">----</td>
+        <td><input type="text" id="ventas-3" placeholder="e.g., 30724.32"></td>
+        <td id="crecimiento-3">----</td>
+    </tr>
+    <tr>
+        <td id="anio-4">----</td>
+        <td><input type="text" id="ventas-4" placeholder="e.g., 30000.00"></td>
+        <td id="crecimiento-4">----</td>
+    </tr>
+</table>
             <!-- crecimiento  -->
             <h2>Crecimiento de cuentas incobrables</h2>
-            <table>
-                <tr>
-                    <th>Año</th>
-                    <th>Cuentas Incobrables</th>
-                    <th>Porcentaje Incobrables</th>
-                </tr>
-                <tr>
-                    <td>2021</td>
-                    <td><input type="text" id="incobrables-2021" placeholder="e.g., 3000.00"></td>
-                    <td id="porcentaje-incobrables-2021">----</td>
-                </tr>
-                <tr>
-                    <td>2022</td>
-                    <td><input type="text" id="incobrables-2022" placeholder="e.g., 1500.00"></td>
-                    <td id="porcentaje-incobrables-2022">----</td>
-                </tr>
-                <tr>
-                    <td>2023</td>
-                    <td><input type="text" id="incobrables-2023" placeholder="e.g., 2800.00"></td>
-                    <td id="porcentaje-incobrables-2023">----</td>
-                </tr>
-                <tr>
-                    <td>2024</td>
-                    <td><input type="text" id="incobrables-2024" placeholder="e.g., 5600.00"></td>
-                    <td id="porcentaje-incobrables-2024">----</td>
-                </tr>
-            </table>
+<table>
+    <tr>
+        <th>Año</th>
+        <th>Cuentas Incobrables</th>
+        <th>Porcentaje Incobrables</th>
+    </tr>
+    <tr>
+        <td id="anio-incobrables-1">----</td>
+        <td><input type="text" id="incobrables-2021" placeholder="e.g., 3000.00"></td>
+        <td id="porcentaje-incobrables-2021">----</td>
+    </tr>
+    <tr>
+        <td id="anio-incobrables-2">----</td>
+        <td><input type="text" id="incobrables-2022" placeholder="e.g., 1500.00"></td>
+        <td id="porcentaje-incobrables-2022">----</td>
+    </tr>
+    <tr>
+        <td id="anio-incobrables-3">----</td>
+        <td><input type="text" id="incobrables-2023" placeholder="e.g., 2800.00"></td>
+        <td id="porcentaje-incobrables-2023">----</td>
+    </tr>
+    <tr>
+        <td id="anio-incobrables-4">----</td>
+        <td><input type="text" id="incobrables-2024" placeholder="e.g., 5600.00"></td>
+        <td id="porcentaje-incobrables-2024">----</td>
+    </tr>
+</table>
              <!-- indicadores -->
              <h2>Indicadores de liquidez y solvencia</h2>
              <table>

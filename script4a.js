@@ -30,14 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const cacpecoInput = document.getElementById('cacpeco');
     const pichinchaInput = document.getElementById('pichincha');
     const totalPasivosCorrientesElement = document.getElementById('total-pasivos-corrientes');
-    const ventas2021Input = document.getElementById('ventas-2021');
-    const ventas2022Input = document.getElementById('ventas-2022');
-    const ventas2023Input = document.getElementById('ventas-2023');
-    const ventas2024Input = document.getElementById('ventas-2024');
-    const crecimiento2021Element = document.getElementById('crecimiento-2021');
-    const crecimiento2022Element = document.getElementById('crecimiento-2022');
-    const crecimiento2023Element = document.getElementById('crecimiento-2023');
-    const crecimiento2024Element = document.getElementById('crecimiento-2024');
+    const ventas2021Input = document.getElementById('ventas-1');
+    const ventas2022Input = document.getElementById('ventas-2');
+    const ventas2023Input = document.getElementById('ventas-3');
+    const ventas2024Input = document.getElementById('ventas-4');
+    const crecimiento2021Element = document.getElementById('crecimiento-1');
+    const crecimiento2022Element = document.getElementById('crecimiento-2');
+    const crecimiento2023Element = document.getElementById('crecimiento-3');
+    const crecimiento2024Element = document.getElementById('crecimiento-4');
     const incobrables2021Input = document.getElementById('incobrables-2021');
     const incobrables2022Input = document.getElementById('incobrables-2022');
     const incobrables2023Input = document.getElementById('incobrables-2023');
@@ -134,9 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
         inventarios = parseFloat(inventariosInput.value) || 0;
         totalActivosCorrientes = efectivo + cuentasCobrar + inventarios;
         totalActivosCorrientesElement.textContent = `$${totalActivosCorrientes.toFixed(2)}`;
-        activosCorrientes1Input.value = totalActivosCorrientes.toFixed(2);
-        activosCorrientes2Input.value = totalActivosCorrientes.toFixed(2);
-        activosCorrientes3Input.value = totalActivosCorrientes.toFixed(2);
+            //
+        //activosCorrientes1Input.value = totalActivosCorrientes.toFixed(2);
+       // activosCorrientes2Input.value = totalActivosCorrientes.toFixed(2);
+        //activosCorrientes3Input.value = totalActivosCorrientes.toFixed(2);
+
         updateCapitalTrabajo();
         updateLiquidezCorriente();
         updatePruebaAcida();
@@ -211,6 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const pasivosCorrientes = parseFloat(pasivosCorrientes3Input.value) || 0;
         const pruebaAcida = (activosCorrientes - inventario) / pasivosCorrientes;
         pruebaAcidaElement.textContent = pruebaAcida.toFixed(2);
+        document.getElementById('inventario').value = inventario.toFixed(2);
     }
 
     function updateCrecimiento() {
@@ -426,34 +429,93 @@ function addCodeudorRow() {
         const contribuyenteData = JSON.parse(localStorage.getItem('contribuyenteData'));
         const datosFlujoCaja = JSON.parse(localStorage.getItem('datosFlujoCaja'));
         const creditos = JSON.parse(localStorage.getItem('creditos'));
+    
         if (contribuyenteData) {
             document.getElementById('nombre-contribuyente').textContent = `${contribuyenteData.nombres} ${contribuyenteData.apellidos}`;
             document.getElementById('ci-contribuyente').textContent = contribuyenteData.cedula;
             document.getElementById('tipo-contribuyente').textContent = contribuyenteData.tipo;
             document.getElementById('ventas').value = contribuyenteData.ingresosAnuales.toFixed(2); // Llenar el campo de ventas con el ingreso anual
+            activosCorrientes1Input.value = contribuyenteData.ingresosAnuales.toFixed(2);
+            activosCorrientes2Input.value = contribuyenteData.ingresosAnuales.toFixed(2);
+            activosCorrientes3Input.value = contribuyenteData.ingresosAnuales.toFixed(2);
 
         } else {
             alert('No se encontraron datos del contribuyente en el almacenamiento local.');
         }
+    
         if (datosFlujoCaja && datosFlujoCaja.length > 0) {
-            // Asume que quieres el primer año de datos del flujo de caja
+            // Variables para el acceso a los elementos de la tabla de crecimiento de ventas
+            const ventasInputs = [
+                document.getElementById('ventas-1'),
+                document.getElementById('ventas-2'),
+                document.getElementById('ventas-3'),
+                document.getElementById('ventas-4')
+            ];
+    
+            const crecimientoElements = [
+                document.getElementById('crecimiento-1'),
+                document.getElementById('crecimiento-2'),
+                document.getElementById('crecimiento-3'),
+                document.getElementById('crecimiento-4')
+            ];
+    
+            for (let i = 0; i < 4; i++) {
+                const flujoCajaAnio = datosFlujoCaja[i];
+                if (flujoCajaAnio) {
+                    // Rellenar los campos de año y ventas
+                    document.getElementById(`anio-${i+1}`).textContent = flujoCajaAnio.anio;
+                    ventasInputs[i].value = flujoCajaAnio.ingreso;
+                    
+                    // Calcular y mostrar el crecimiento de ventas
+                    if (i > 0) {
+                        const ingresoAnterior = parseFloat(datosFlujoCaja[i-1].ingreso);
+                        const crecimiento = ((parseFloat(flujoCajaAnio.ingreso) - ingresoAnterior) / ingresoAnterior) * 100;
+                        crecimientoElements[i].textContent = `${crecimiento.toFixed(2)}%`;
+                    } else {
+                        crecimientoElements[i].textContent = 'N/A';
+                    }
+                }
+            }
+            for (let i = 0; i < 4; i++) {
+                const flujoCajaAnio = datosFlujoCaja[i];
+                if (flujoCajaAnio) {
+                    document.getElementById(`anio-incobrables-${i+1}`).textContent = flujoCajaAnio.anio;
+                }
+            }
+    
+            // Rellenar los campos de egresos con los datos correspondientes
             const primerAnioFlujoCaja = datosFlujoCaja[0];
-            // document.getElementById('ingresos-financieros').value = primerAnioFlujoCaja.ingreso;
-            document.getElementById('venta-activos').value = primerAnioFlujoCaja.ventasActivos;
+            document.getElementById('materia-prima').value = primerAnioFlujoCaja.costoMateriaPrima;
+            document.getElementById('mano-obra').value = primerAnioFlujoCaja.costoManoObra;
+            document.getElementById('gastos-administrativos').value = primerAnioFlujoCaja.gastosAdmin;
+            document.getElementById('gastos-venta').value = primerAnioFlujoCaja.gastosVenta;
+            document.getElementById('gastos-financieros').value = primerAnioFlujoCaja.gastosFinancieros;
+            
+            // Sumar todos los egresos para mostrar el total
+            const totalEgresos = parseFloat(primerAnioFlujoCaja.costoMateriaPrima) +
+                                 parseFloat(primerAnioFlujoCaja.costoManoObra) +
+                                 parseFloat(primerAnioFlujoCaja.gastosAdmin) +
+                                 parseFloat(primerAnioFlujoCaja.gastosVenta) +
+                                 parseFloat(primerAnioFlujoCaja.gastosFinancieros);
+    
+            document.getElementById('total-egresos').textContent = `$${totalEgresos.toFixed(2)}`;
         } else {
             alert('No se encontraron datos de flujo de caja en el almacenamiento local.');
         }
-
+    
         if (creditos) {
             let cuentasPagarTotal = 0;
             let cacpecoTotal = 0;
             let pichinchaTotal = 0;
             let guayaquilTotal = 0;
             let ruminhauiTotal = 0;
-    
+            let banEcuadorTotal = 0;
+            let pacificoTotal = 0;
+            let ambatoTotal = 0;
+        
             creditos.forEach(credito => {
                 cuentasPagarTotal += credito.valor;
-    
+        
                 switch (credito.institucion) {
                     case 'Cacpeco':
                         cacpecoTotal += credito.valor;
@@ -467,21 +529,60 @@ function addCodeudorRow() {
                     case 'Rumiñahui':
                         ruminhauiTotal += credito.valor;
                         break;
+                    case 'BanEcuador':
+                        banEcuadorTotal += credito.valor;
+                        break;
+                    case 'Pacifico':
+                        pacificoTotal += credito.valor;
+                        break;
+                    case 'Ambato':
+                        ambatoTotal += credito.valor;
+                        break;
                 }
             });
-    
+        
             document.getElementById('cuentas-pagar').value = cuentasPagarTotal.toFixed(2);
             document.getElementById('cacpeco').value = cacpecoTotal.toFixed(2);
             document.getElementById('pichincha').value = pichinchaTotal.toFixed(2);
             document.getElementById('guayaquil').value = guayaquilTotal.toFixed(2);
             document.getElementById('ruminhaui').value = ruminhauiTotal.toFixed(2);
-    
+            document.getElementById('banecuador').value = banEcuadorTotal.toFixed(2);
+            document.getElementById('pacifico').value = pacificoTotal.toFixed(2);
+            document.getElementById('ambato').value = ambatoTotal.toFixed(2);
+        
             const totalPasivosCorrientes = cuentasPagarTotal;
             document.getElementById('total-pasivos-corrientes').textContent = `$${totalPasivosCorrientes.toFixed(2)}`;
+            pasivosCorrientes1Input.value = totalPasivosCorrientes.toFixed(2);
+            pasivosCorrientes2Input.value = totalPasivosCorrientes.toFixed(2);
+            pasivosCorrientes3Input.value = totalPasivosCorrientes.toFixed(2);
+       
         } else {
             alert('No se encontraron datos de créditos en el almacenamiento local.');
         }
     });
+
+    //nuevo
+// Eventos para actualizar indicadores en tiempo real
+ventasInput.addEventListener('input', updateTotalIngresos);
+ingresosFinancierosInput.addEventListener('input', updateTotalIngresos);
+ventaActivosInput.addEventListener('input', updateTotalIngresos);
+ingresosAlquilerInput.addEventListener('input', updateTotalIngresos);
+
+efectivoInput.addEventListener('input', updateTotalActivosCorrientes);
+cuentasCobrarInput.addEventListener('input', updateTotalActivosCorrientes);
+inventariosInput.addEventListener('input', updateTotalActivosCorrientes);
+
+cuentasPagarInput.addEventListener('input', updateTotalPasivosCorrientes);
+cacpecoInput.addEventListener('input', updateTotalPasivosCorrientes);
+pichinchaInput.addEventListener('input', updateTotalPasivosCorrientes);
+
+// Eventos para actualización de indicadores en tiempo real
+materiaPrimaInput.addEventListener('input', updateTotalEgresos);
+manoObraInput.addEventListener('input', updateTotalEgresos);
+gastosAdministrativosInput.addEventListener('input', updateTotalEgresos);
+gastosVentaInput.addEventListener('input', updateTotalEgresos);
+gastosFinancierosInput.addEventListener('input', updateTotalEgresos);
+    //
 
     incobrables2021Input.addEventListener('input', updatePorcentajeIncobrables);
     incobrables2022Input.addEventListener('input', updatePorcentajeIncobrables);

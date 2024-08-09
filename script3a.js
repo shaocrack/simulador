@@ -31,7 +31,10 @@ function calcularFlujoDeCaja() {
             gastosAdmin *= (1 + crecimientoIngresos);
             gastosVenta *= (1 + crecimientoIngresos);
         }
+        //agregado
+        //let crecimientoVentas = i > 0 ? ((ingreso / datosFlujoCaja[i - 1].ingreso) - 1) * 100 : 0;
 
+        //
         const gastosFinancieros = gastosFinancierosArray[i];
         const flujoOperativo = ingreso - (costoMateriaPrima + costoManoObra + gastosAdmin + gastosVenta + gastosFinancieros);
         const flujoAntesParticipacion = flujoOperativo + ventasActivos - pagoDeudas;
@@ -83,11 +86,13 @@ function calcularFlujoDeCaja() {
             impuestoRenta: impuestoRenta.toFixed(2),
             utilidadAntesReserva: utilidadAntesReserva.toFixed(2),
             reservaLegal: reservaLegal.toFixed(2),
-            flujoNetoProyectado: flujoNetoProyectado.toFixed(2)
+            flujoNetoProyectado: flujoNetoProyectado.toFixed(2),
+            //crecimientoVentas: crecimientoVentas.toFixed(2) 
         });
     }
 
     // Guardar los datos en el localStorage
+    //localStorage.setItem('anioInicio', anioInicio);
     localStorage.setItem('datosFlujoCaja', JSON.stringify(datosFlujoCaja));
 }
 
@@ -106,4 +111,7 @@ document.getElementById("anioInicio").addEventListener("input", function () {
         gastosFinancierosDiv.innerHTML += `<label for="gastosFinancieros${anio}">Gastos Financieros para ${anio}:</label>
         <input type="number" id="gastosFinancieros${anio}" step="0.01" required><br><br>`;
     }
-});
+}
+
+
+);
