@@ -190,13 +190,45 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePruebaAcida();
         updateEndeudamientoActivo();
     }
+//nuevo
+
+function actualizarInterpretacionLiquidez() {
+    const capitalTrabajo = parseFloat(document.getElementById('capital-trabajo').textContent.replace('$', '').replace(',', '')) || 0;
+    const liquidezCorriente = parseFloat(document.getElementById('liquidez-corriente').textContent) || 0;
+    const pruebaAcida = parseFloat(document.getElementById('prueba-acida').textContent) || 0;
+
+    const interpretacionElement = document.getElementById('interpretacion-indice-liquidez');
+
+    let interpretacion = '';
+    let colorFondo = '';
+
+    if (capitalTrabajo > 0 && liquidezCorriente > 0 && pruebaAcida > 0) {
+        interpretacion = 'El negocio de acuerdo al Capital de Trabajo, Razón Corriente y Prueba Ácida si posee la liquidez necesaria para cubrir sus obligaciones financieras, deudas o pasivos a corto plazo y desarrollar sus actividades sin ningún contratiempo.';
+        colorFondo = 'green';
+    } else if ((capitalTrabajo > 0 && (liquidezCorriente <= 0 || pruebaAcida <= 0)) ||
+               (liquidezCorriente > 0 && (capitalTrabajo <= 0 || pruebaAcida <= 0)) ||
+               (pruebaAcida > 0 && (capitalTrabajo <= 0 || liquidezCorriente <= 0))) {
+        interpretacion = 'El negocio de acuerdo al Capital de Trabajo, Razón Corriente y Prueba Ácida posee una liquidez neutra que probablemente le permita cubrir sus obligaciones financieras, deudas o pasivos a corto plazo y desarrollar sus actividades sin ningún contratiempo.';
+        colorFondo = 'yellow';
+    } else {
+        interpretacion = 'El negocio de acuerdo al Capital de Trabajo, Razón Corriente y Prueba Ácida no posee la liquidez necesaria para cubrir sus obligaciones financieras, deudas o pasivos a corto plazo y desarrollar sus actividades sin ningún contratiempo.';
+        colorFondo = 'red';
+    }
+
+    interpretacionElement.textContent = interpretacion;
+    interpretacionElement.style.backgroundColor = colorFondo;
+    interpretacionElement.style.color = colorFondo === 'yellow' ? 'black' : 'white'; // Ajuste de color del texto para mejor legibilidad
+}
+//
+
+
 
     function updateCapitalTrabajo() {
         const activosCorrientes = parseFloat(activosCorrientes1Input.value) || 0;
         const pasivosCorrientes = parseFloat(pasivosCorrientes1Input.value) || 0;
         const capitalTrabajo = activosCorrientes - pasivosCorrientes;
         capitalTrabajoElement.textContent = `$${capitalTrabajo.toFixed(2)}`;
-        
+        actualizarInterpretacionLiquidez(); 
     }
 
 
@@ -205,6 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const pasivosCorrientes = parseFloat(pasivosCorrientes2Input.value) || 0;
         const liquidezCorriente = activosCorrientes / pasivosCorrientes;
         liquidezCorrienteElement.textContent = liquidezCorriente.toFixed(2);
+        actualizarInterpretacionLiquidez();
     }
 
     function updatePruebaAcida() {
@@ -214,6 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const pruebaAcida = (activosCorrientes - inventario) / pasivosCorrientes;
         pruebaAcidaElement.textContent = pruebaAcida.toFixed(2);
         document.getElementById('inventario').value = inventario.toFixed(2);
+        actualizarInterpretacionLiquidez();
     }
 
     function updateCrecimiento() {
