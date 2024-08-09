@@ -472,10 +472,157 @@
                 </table>
                 <button id="add-codeudor-row">Agregar Codeudor</button>
             </section>
+            <!-- Calificación de Días de Mora -->
+            <h2>Cálculo del Score</h2>
+            <form id="formulario-score">
+                <label for="dias-mora">Rango de días de mora:</label>
+                <select id="dias-mora" required>
+                    <option value="0">Sin días de mora</option>
+                    <option value="1">De 1 a 15 días</option>
+                    <option value="2">De 16 a 30 días</option>
+                    <option value="3">De 31 a 45 días</option>
+                    <option value="4">De 46 a 60 días</option>
+                    <option value="5">De 61 a 90 días</option>
+                    <option value="6">Más de 90 días</option>
+                </select>
             
+                <label for="saldo-promedio-deuda">Saldo Promedio de Deuda:</label>
+                <input type="number" id="saldo-promedio-deuda" placeholder="e.g., 17000" required>
+            
+                <label for="saldo-promedio-capacidad-pago">Saldo Promedio de Capacidad de Pago:</label>
+                <input type="number" id="saldo-promedio-capacidad-pago" placeholder="e.g., 0" required>
+            
+                <button type="button" onclick="calcularScore()">Calcular Score</button>
+            </form>
+            
+            <h3>Resultado</h3>
+            <p id="resultado-score">Puntaje: <span id="puntaje">----</span></p>
+            <p id="descripcion-riesgo">Descripción del Riesgo: <span id="riesgo">----</span></p>
+            
+<h2>Calificación de Días de Mora</h2>
+<table>
+    <tr>
+        <th>Calificación</th>
+        <th>Frecuencia (días)</th>
+        <th>Impacto</th>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>0</td>
+        <td>0%</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>1-15</td>
+        <td>1%-20%</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>16-30</td>
+        <td>21%-40%</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>31-45</td>
+        <td>41%-60%</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>46-60</td>
+        <td>61%-80%</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>61-90</td>
+        <td>81%-100%</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>91- en adelante</td>
+        <td>101%- en adelante</td>
+    </tr>
+</table>
+
+<!-- MATRIZ DE RIESGOS -->
+<h2>MATRIZ DE RIESGOS</h2>
+<table>
+    <tr>
+        <th>Puntaje</th>
+        <th>Descripción del Riesgo</th>
+    </tr>
+    <tr>
+        <td>999-960</td>
+        <td style="background-color: green;">Bajo Riesgo de Morosidad</td>
+    </tr>
+    <tr>
+        <td>959-840</td>
+        <td style="background-color: yellow;">Moderado Riesgo de Morosidad</td>
+    </tr>
+    <tr>
+        <td>839-600</td>
+        <td style="background-color: orange;">Alto Riesgo de Morosidad</td>
+    </tr>
+    <tr>
+        <td>599-280</td>
+        <td style="background-color: red;">Muy Alto Riesgo de Morosidad</td>
+    </tr>
+</table>
              <!--  -->
+<!-- Botón para calcular riesgo -->
+
              <button onclick="window.location.href='final.html'">Continuar</button>
     </div>
+    <script>
+        function calcularScore() {
+            const diasMora = parseInt(document.getElementById('dias-mora').value);
+            const saldoPromedioDeuda = parseFloat(document.getElementById('saldo-promedio-deuda').value);
+            const saldoPromedioCapacidadPago = parseFloat(document.getElementById('saldo-promedio-capacidad-pago').value);
+            
+            let impacto = 0;
+        
+            switch (diasMora) {
+                case 0:
+                    impacto = 0;
+                    break;
+                case 1:
+                    impacto = 1;
+                    break;
+                case 2:
+                    impacto = 2;
+                    break;
+                case 3:
+                    impacto = 3;
+                    break;
+                case 4:
+                    impacto = 4;
+                    break;
+                case 5:
+                    impacto = 5;
+                    break;
+                case 6:
+                    impacto = 6;
+                    break;
+            }
+        
+            let puntaje = 999 - impacto * 40;
+        
+            let descripcionRiesgo = '';
+            if (puntaje >= 959) {
+                descripcionRiesgo = 'Apto para crédito';
+            } else if (puntaje >= 839 && puntaje < 959) {
+                descripcionRiesgo = 'Probabilidad aceptable para adquirir un crédito';
+            } else if (puntaje >= 639 && puntaje < 839) {
+                descripcionRiesgo = 'Poco probable para crédito';
+            } else {
+                descripcionRiesgo = 'No es apto para crédito';
+            }
+        
+            // Mostrar resultados
+            document.getElementById('puntaje').textContent = puntaje;
+            document.getElementById('riesgo').textContent = descripcionRiesgo;
+        }
+        
+    </script>
     <script>
         function updateRotacionCartera() {
             const ventas = parseFloat(document.getElementById('ventas-rotacion').value) || 0;
@@ -486,6 +633,45 @@
         }
 
         // Otras funciones para los cálculos
+    </script>
+    <script>
+        function calcularPuntajeRiesgo() {
+            const diasDeMora = parseFloat(document.getElementById('dias-mora-input').value) || 0; 
+            const sobreendeudamiento = parseFloat(document.getElementById('sobreendeudamiento-input').value) || 0;
+            
+            let puntaje = 999;
+            
+            if (diasDeMora > 90 || sobreendeudamiento > 100) {
+                puntaje = 279; // Muy alto riesgo
+            } else if (diasDeMora > 60 || sobreendeudamiento > 80) {
+                puntaje = 519; // Alto riesgo
+            } else if (diasDeMora > 15 || sobreendeudamiento > 20) {
+                puntaje = 839; // Moderado riesgo
+            } else {
+                puntaje = 959; // Bajo riesgo
+            }
+            
+            document.getElementById('puntaje-riesgo').textContent = puntaje;
+        
+            // Actualizar el color de fondo de la descripción de riesgo
+            const riesgoDescripcion = document.getElementById('riesgo-descripcion');
+            if (puntaje >= 960) {
+                riesgoDescripcion.style.backgroundColor = 'green';
+                riesgoDescripcion.textContent = "Bajo Riesgo de Morosidad";
+            } else if (puntaje >= 840) {
+                riesgoDescripcion.style.backgroundColor = 'yellow';
+                riesgoDescripcion.textContent = "Moderado Riesgo de Morosidad";
+            } else if (puntaje >= 600) {
+                riesgoDescripcion.style.backgroundColor = 'orange';
+                riesgoDescripcion.textContent = "Alto Riesgo de Morosidad";
+            } else {
+                riesgoDescripcion.style.backgroundColor = 'red';
+                riesgoDescripcion.textContent = "Muy Alto Riesgo de Morosidad";
+            }
+        }
+        
+        // Añade un botón para calcular el riesgo
+        document.getElementById('calcular-riesgo-btn').addEventListener('click', calcularPuntajeRiesgo);
     </script>
     <script src="script4a.js"></script>
 </body>
