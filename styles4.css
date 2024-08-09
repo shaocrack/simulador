@@ -68,3 +68,12 @@ p {
     border-radius: 5px;
     margin-top: 20px;
 }
+#endeudamiento-activo-display {
+    font-weight: bold;
+}
+
+#interpretacion-endeudamiento {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}

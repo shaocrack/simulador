@@ -138,14 +138,15 @@ document.addEventListener('DOMContentLoaded', function() {
         //activosCorrientes1Input.value = totalActivosCorrientes.toFixed(2);
        // activosCorrientes2Input.value = totalActivosCorrientes.toFixed(2);
         //activosCorrientes3Input.value = totalActivosCorrientes.toFixed(2);
-
+        document.getElementById('total-activos-corrientes').textContent = `$${totalActivosCorrientes.toFixed(2)}`;
+        //updateTotalActivos();
         updateCapitalTrabajo();
         updateLiquidezCorriente();
         updatePruebaAcida();
         updateTotalActivos();
         updateEndeudamientoActivo();
     }
-
+    
     function updateTotalActivosNoCorrientes() {
         terrenos = parseFloat(terrenosInput.value) || 0;
         edificios = parseFloat(edificiosInput.value) || 0;
@@ -163,6 +164,8 @@ document.addEventListener('DOMContentLoaded', function() {
         totalActivos = totalActivosCorrientes + totalActivosNoCorrientes;
         totalActivosElement.textContent = `$${totalActivos.toFixed(2)}`;
         activoTotalElement.textContent = `$${totalActivos.toFixed(2)}`;
+
+   
     }
 
     function updateTotalEgresos() {
@@ -185,12 +188,15 @@ document.addEventListener('DOMContentLoaded', function() {
         pasivosCorrientes2Input.value = totalPasivosCorrientes.toFixed(2);
         pasivosCorrientes3Input.value = totalPasivosCorrientes.toFixed(2);
         pasivoTotalElement.textContent = `$${totalPasivosCorrientes.toFixed(2)}`;
+
+       
         updateCapitalTrabajo();
         updateLiquidezCorriente();
         updatePruebaAcida();
         updateEndeudamientoActivo();
     }
 //nuevo
+
 
 function actualizarInterpretacionLiquidez() {
     const capitalTrabajo = parseFloat(document.getElementById('capital-trabajo').textContent.replace('$', '').replace(',', '')) || 0;
@@ -285,18 +291,7 @@ function actualizarInterpretacionLiquidez() {
         porcentajeIncobrables2024Element.textContent = ((incobrables2024 / ventas2024) * 100).toFixed(2) + '%';
     }
 
-    function updateEndeudamientoActivo() {
-        const pasivoTotal = parseFloat(totalPasivosElement.textContent.replace('$', '').replace(',', '')) || 0;
-        const activoTotal = parseFloat(totalActivosElement.textContent.replace('$', '').replace(',', '')) || 0;
-        const ratioEndeudamiento = pasivoTotal / activoTotal;
-
-        pasivoTotalElement.textContent = `$${pasivoTotal.toFixed(2)}`;
-        activoTotalElement.textContent = `$${activoTotal.toFixed(2)}`;
-        endeudamientoActivoElement.textContent = ratioEndeudamiento.toFixed(2);
-
-        const interpretacion = `El negocio presenta por cada dólar de Activo Total la empresa tiene $${ratioEndeudamiento.toFixed(2)} en Pasivos Corrientes. Por cada dólar de Activo Total, $ ${ratioEndeudamiento.toFixed(2)} son deudas a Corto Plazo`;
-        document.getElementById('interpretacion-endeudamiento').textContent = interpretacion;
-    }
+   
 
     function updateRotacionCartera() {
         const ventas = parseFloat(ventasRotacionInput.value) || 0;
@@ -354,7 +349,7 @@ function actualizarInterpretacionLiquidez() {
         const roa = activoTotal !== 0 ? (utilidad / activoTotal) * 100 : 0;
         document.getElementById('resultado-roa').textContent = `${roa.toFixed(2)}%`;
     }
-
+   
     //
     //codeudor
 // Función para agregar una nueva fila en la tabla de Codeudores
@@ -457,6 +452,7 @@ function addCodeudorRow() {
         updateCrecimiento();
         updatePorcentajeIncobrables();
     });
+    
 
     //traer los datos
     document.getElementById('cargar-datos').addEventListener('click', function() {
@@ -583,16 +579,34 @@ function addCodeudorRow() {
             document.getElementById('banecuador').value = banEcuadorTotal.toFixed(2);
             document.getElementById('pacifico').value = pacificoTotal.toFixed(2);
             document.getElementById('ambato').value = ambatoTotal.toFixed(2);
-        
+           
             const totalPasivosCorrientes = cuentasPagarTotal;
             document.getElementById('total-pasivos-corrientes').textContent = `$${totalPasivosCorrientes.toFixed(2)}`;
             pasivosCorrientes1Input.value = totalPasivosCorrientes.toFixed(2);
             pasivosCorrientes2Input.value = totalPasivosCorrientes.toFixed(2);
             pasivosCorrientes3Input.value = totalPasivosCorrientes.toFixed(2);
-       
+       //nuevo
+            // Actualizar los valores de Pasivo Total y Activo Total en los inputs
+    const pasivoTotal = parseFloat(document.getElementById('total-pasivos-corrientes').textContent.replace('$', '').replace(',', '')) || 0;
+    const activoTotal = parseFloat(document.getElementById('total-activos').textContent.replace('$', '').replace(',', '')) || 0;
+
+    document.getElementById('pasivo-total-input').value = pasivoTotal.toFixed(2);
+    document.getElementById('activo-total-input').value = activoTotal.toFixed(2);
+
+    // Calcular el Endeudamiento del Activo y actualizar el resultado
+    const endeudamientoActivo = (pasivoTotal / activoTotal) || 0;
+    document.getElementById('endeudamiento-activo-display').textContent = endeudamientoActivo.toFixed(2);
+
+    // Actualizar el mensaje interpretativo
+    const interpretacionEndeudamientoElement = document.getElementById('interpretacion-endeudamiento');
+    interpretacionEndeudamientoElement.innerHTML = `El negocio presenta por cada dólar de Activo Total la empresa tiene $<span id="ratio-endeudamiento-display">${endeudamientoActivo.toFixed(2)}</span> en Pasivos Corrientes. Por cada dólar de Activo Total, $<span id="ratio-endeudamiento-display">${endeudamientoActivo.toFixed(2)}</span> son deudas a Corto Plazo.`;
+
+
+
         } else {
             alert('No se encontraron datos de créditos en el almacenamiento local.');
         }
+       
     });
 
     //nuevo
