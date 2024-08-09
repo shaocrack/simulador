@@ -339,66 +339,74 @@
                  <tr>
                      <td>Rotación de Cartera</td>
                      <td>
-                         Ventas: <input type="number" id="ventas-rotacion" value="30000"><br>
-                         Cuentas por Cobrar: <input type="number" id="cuentas-por-cobrar" value="5600">
+                         Ventas: <input type="number" id="ventas-rotacion" value=""><br>
+                         Cuentas por Cobrar: <input type="number" id="cuentas-por-cobrar" value=""><br>
+                         
                      </td>
-                     <td id="rotacion-cartera-valor">5.36</td>
+                     <td id="rotacion-cartera-valor">---</td>
                      <td>Veces</td>
                      <td id="rotacion-cartera-interpretacion">La empresa en promedio cobra 5 veces al año.</td>
                  </tr>
                  <tr>
                      <td>Período medio de cobranza</td>
                      <td>
-                         Ventas: <input type="number" id="ventas-cobranza" value="30000"><br>
-                         Cuentas por Cobrar: <input type="number" id="cuentas-por-cobrar-cobranza" value="5600">
+                         Ventas: <input type="number" id="ventas-cobranza" value=""><br>
+                         Cuentas por Cobrar: <input type="number" id="cuentas-por-cobrar-cobranza" value=""><br>
+                        
                      </td>
-                     <td id="periodo-cobranza-valor">68.13</td>
+                     <td id="periodo-cobranza-valor">---</td>
                      <td>Días</td>
                      <td id="periodo-cobranza-interpretacion">La empresa otorga a sus clientes un período promedio de 68 días para que cancelen sus deudas a crédito.</td>
                  </tr>
                  <tr>
                      <td>Rotación Cuentas por Pagar</td>
                      <td>
-                         Compras: <input type="number" id="compras" value="22000"><br>
-                         Cuentas por Pagar: <input type="number" id="cuentas-por-pagar" value="51000">
+                         Compras: <input type="number" id="compras" value=""><br>
+                         Cuentas por Pagar: <input type="number" id="cuentas-por-pagar" value=""><br>
+                        
                      </td>
-                     <td id="rotacion-cuentas-pagar-valor">0.43</td>
+                     <td id="rotacion-cuentas-pagar-valor">---</td>
                      <td>Veces</td>
                      <td id="rotacion-cuentas-pagar-interpretacion">La empresa paga en promedio 8 veces al año.</td>
                  </tr>
                  <tr>
                      <td>Período medio de Pago</td>
                      <td>
-                         Compras: <input type="number" id="compras-pago" value="22000"><br>
-                         Cuentas por Pagar: <input type="number" id="cuentas-por-pagar-pago" value="51000">
+                         Compras: <input type="number" id="compras-pago" value=""><br>
+                         Cuentas por Pagar: <input type="number" id="cuentas-por-pagar-pago" value=""><br>
+                        
                      </td>
-                     <td id="periodo-pago-valor">846.14</td>
+                     <td id="periodo-pago-valor">---</td>
                      <td>Días</td>
                      <td id="periodo-pago-interpretacion">La empresa paga a sus proveedores en un período promedio de 846 días.</td>
                  </tr>
                  <tr>
                      <td>Rotación Activo Fijo</td>
                      <td>
-                         Ventas: <input type="number" id="ventas-activo-fijo" value="30000"><br>
-                         Activo Fijo: <input type="number" id="activo-fijo" value="75000">
+                         Ventas: <input type="number" id="ventas-activo-fijo" value=""><br>
+                         Activo Fijo: <input type="number" id="activo-fijo" value=""><br>
+                         
                      </td>
-                     <td id="rotacion-activo-fijo-valor">0.40</td>
+                     <td id="rotacion-activo-fijo-valor">---</td>
                      <td>Veces</td>
                      <td id="rotacion-activo-fijo-interpretacion">Por cada dólar invertido en Activo Fijo, La empresa vende $ 0.4.</td>
                  </tr>
                  <tr>
                      <td>Rotación de Ventas</td>
                      <td>
-                         Ventas: <input type="number" id="ventas-rotacion-ventas" value="30000"><br>
-                         Activo Total: <input type="number" id="activo-total-rotacion-ventas" value="103600">
+                         Ventas: <input type="number" id="ventas-rotacion-ventas" value=""><br>
+                         Activo Total: <input type="number" id="activo-total-rotacion-ventas" value=""><br>
+                        
                      </td>
-                     <td id="rotacion-ventas-valor">0.29</td>
+                     <td id="rotacion-ventas-valor">---</td>
                      <td>Veces</td>
                      <td id="rotacion-ventas-interpretacion">Por cada dólar invertido en Activo Total, la empresa generó una venta de $ 0.29.</td>
                  </tr>
              </table>
              <p id="conclusion-rotacion">La empresa otorga a sus clientes un plazo de cobro de 68 días y paga a sus proveedores en un período de 846 días, por lo tanto la empresa tiene una buena gestión tanto en sus cobros como en sus pagos.</p>
-             <!-- indicadores de rentabilidad -->
+             
+
+            <!-- indicadores de rentabilidad -->
              <section>
                 <h2>Indicadores de rentabilidad</h2>
                 <table>
@@ -466,8 +474,19 @@
             </section>
             
              <!--  -->
-        <button id="guardar">Guardar Datos</button>
+             <button onclick="window.location.href='final.html'">Continuar</button>
     </div>
+    <script>
+        function updateRotacionCartera() {
+            const ventas = parseFloat(document.getElementById('ventas-rotacion').value) || 0;
+            const cuentasPorCobrar = parseFloat(document.getElementById('cuentas-por-cobrar').value) || 0;
+            const rotacionCartera = ventas / cuentasPorCobrar;
+            document.getElementById('rotacion-cartera-valor').textContent = Math.floor(rotacionCartera);
+            document.getElementById('rotacion-cartera-interpretacion').textContent = `La empresa en promedio cobra ${Math.floor(rotacionCartera)} veces al año.`;
+        }
+
+        // Otras funciones para los cálculos
+    </script>
     <script src="script4a.js"></script>
 </body>
 </html>

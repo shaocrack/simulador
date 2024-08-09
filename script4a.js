@@ -294,46 +294,62 @@ function actualizarInterpretacionLiquidez() {
    
 
     function updateRotacionCartera() {
-        const ventas = parseFloat(ventasRotacionInput.value) || 0;
-        const cuentasPorCobrar = parseFloat(cuentasPorCobrarInput.value) || 0;
+        const ventas = parseFloat(document.getElementById('ventas-rotacion').value) || 0;
+        const cuentasPorCobrar = parseFloat(document.getElementById('cuentas-por-cobrar').value) || 0;
         const rotacionCartera = ventas / cuentasPorCobrar;
-        valorRotacionCarteraElement.textContent = rotacionCartera.toFixed(2);
+        document.getElementById('rotacion-cartera-valor').textContent = Math.floor(rotacionCartera);
+        document.getElementById('rotacion-cartera-interpretacion').textContent = `La empresa en promedio cobra ${Math.floor(rotacionCartera)} veces al año.`;
+       
     }
-
+    
     function updatePeriodoCobranza() {
-        const cuentasPorCobrar = parseFloat(cuentasPorCobrarCobranzaInput.value) || 0;
-        const ventas = parseFloat(ventasCobranzaInput.value) || 0;
+        const ventas = parseFloat(document.getElementById('ventas-cobranza').value) || 0;
+        const cuentasPorCobrar = parseFloat(document.getElementById('cuentas-por-cobrar-cobranza').value) || 0;
         const periodoCobranza = (cuentasPorCobrar * 365) / ventas;
-        valorPeriodoCobranzaElement.textContent = periodoCobranza.toFixed(2);
+        document.getElementById('periodo-cobranza-valor').textContent = Math.floor(periodoCobranza);
+        document.getElementById('periodo-cobranza-interpretacion').textContent = `La empresa otorga a sus clientes un período promedio de ${Math.floor(periodoCobranza)} días para que cancelen sus deudas a crédito.`;
+        updateConclusionRotacion();
     }
-
+    
+    function updateConclusionRotacion() {
+        const periodoCobranza = document.getElementById('periodo-cobranza-valor').textContent;
+        const periodoPago = document.getElementById('periodo-pago-valor').textContent;
+    
+        document.getElementById('conclusion-rotacion').textContent = `La empresa otorga a sus clientes un plazo de cobro de ${periodoCobranza} días y paga a sus proveedores en un período de ${periodoPago} días, por lo tanto la empresa tiene una buena gestión tanto en sus cobros como en sus pagos.`;
+    }
     function updateRotacionCuentasPagar() {
-        const compras = parseFloat(comprasInput.value) || 0;
-        const cuentasPorPagar = parseFloat(cuentasPorPagarInput.value) || 0;
+        const compras = parseFloat(document.getElementById('compras').value) || 0;
+        const cuentasPorPagar = parseFloat(document.getElementById('cuentas-por-pagar').value) || 0;
         const rotacionCuentasPagar = compras / cuentasPorPagar;
-        valorRotacionCuentasPagarElement.textContent = rotacionCuentasPagar.toFixed(2);
+        document.getElementById('rotacion-cuentas-pagar-valor').textContent = Math.floor(rotacionCuentasPagar);
+        document.getElementById('rotacion-cuentas-pagar-interpretacion').textContent = `La empresa paga en promedio ${Math.floor(rotacionCuentasPagar)} veces al año.`;
     }
-
+    
     function updatePeriodoPago() {
-        const cuentasPorPagar = parseFloat(cuentasPorPagarPagoInput.value) || 0;
-        const compras = parseFloat(comprasPagoInput.value) || 0;
+        const cuentasPorPagar = parseFloat(document.getElementById('cuentas-por-pagar-pago').value) || 0;
+        const compras = parseFloat(document.getElementById('compras-pago').value) || 0;
         const periodoPago = (cuentasPorPagar * 365) / compras;
-        valorPeriodoPagoElement.textContent = periodoPago.toFixed(2);
+        document.getElementById('periodo-pago-valor').textContent = Math.floor(periodoPago);
+        document.getElementById('periodo-pago-interpretacion').textContent = `La empresa paga a sus proveedores en un período promedio de ${Math.floor(periodoPago)} días.`;
+        updateConclusionRotacion();
     }
-
+    
     function updateRotacionActivoFijo() {
-        const ventas = parseFloat(ventasActivoFijoInput.value) || 0;
-        const activoFijo = parseFloat(activoFijoInput.value) || 0;
+        const ventas = parseFloat(document.getElementById('ventas-activo-fijo').value) || 0;
+        const activoFijo = parseFloat(document.getElementById('activo-fijo').value) || 0;
         const rotacionActivoFijo = ventas / activoFijo;
-        valorRotacionActivoFijoElement.textContent = rotacionActivoFijo.toFixed(2);
+        document.getElementById('rotacion-activo-fijo-valor').textContent = Math.floor(rotacionActivoFijo);
+        document.getElementById('rotacion-activo-fijo-interpretacion').textContent = `Por cada dólar invertido en Activo Fijo, la empresa vende $${Math.floor(rotacionActivoFijo)}.`;
     }
-
+    
     function updateRotacionVentas() {
-        const ventas = parseFloat(ventasRotacionVentasInput.value) || 0;
-        const activoTotal = parseFloat(activoTotalRotacionVentasInput.value) || 0;
+        const ventas = parseFloat(document.getElementById('ventas-rotacion-ventas').value) || 0;
+        const activoTotal = parseFloat(document.getElementById('activo-total-rotacion-ventas').value) || 0;
         const rotacionVentas = ventas / activoTotal;
-        valorRotacionVentasElement.textContent = rotacionVentas.toFixed(2);
+        document.getElementById('rotacion-ventas-valor').textContent = Math.floor(rotacionVentas);
+        document.getElementById('rotacion-ventas-interpretacion').textContent = `Por cada dólar invertido en Activo Total, la empresa generó una venta de $${Math.floor(rotacionVentas)}.`;
     }
+    
 
     //indicadores de rentabilidad
     function updateMargenNeto() {
@@ -468,8 +484,13 @@ function addCodeudorRow() {
             activosCorrientes1Input.value = contribuyenteData.ingresosAnuales.toFixed(2);
             activosCorrientes2Input.value = contribuyenteData.ingresosAnuales.toFixed(2);
             activosCorrientes3Input.value = contribuyenteData.ingresosAnuales.toFixed(2);
+            ventasRotacionInput.value = contribuyenteData.ingresosAnuales.toFixed(2);
+            ventasCobranzaInput.value = contribuyenteData.ingresosAnuales.toFixed(2);
+            ventasActivoFijoInput.value = contribuyenteData.ingresosAnuales.toFixed(2);
+            ventasRotacionVentasInput.value = contribuyenteData.ingresosAnuales.toFixed(2);
 
-        } else {
+        } 
+        else {
             alert('No se encontraron datos del contribuyente en el almacenamiento local.');
         }
     
